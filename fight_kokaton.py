@@ -146,15 +146,21 @@ class Score:
     スコア表示に関するクラス
     """
     def __init__(self):
-        self.score = 0
-        self.fonto = pg.font.SysFont("hgp創英角ﾎﾟｯﾌﾟ体", 30)
-        self.color = (0, 0, 255)
-        self.img = self.fonto.render(f"スコア:{self.score}", 0, self.color)
+        """
+        現在のスコアを表示させる文字列Surfaceの生成
+        """
+        self.score = 0  # スコアの初期値の設定
+        self.fonto = pg.font.SysFont("hgp創英角ﾎﾟｯﾌﾟ体", 30)  # フォントの設定
+        self.color = (0, 0, 255)  # 文字色の設定
+        self.img = self.fonto.render(f"スコア:{self.score}", 0, self.color)  # 文字列Surfaceの生成
         self.rct = self.img.get_rect()
-        self.rct.center = (100, HEIGHT - 50)
+        self.rct.center = (100, HEIGHT - 50)  # 文字列の中心座標
 
     def update(self, screen: pg.Surface):
-        self.img = self.fonto.render(f"スコア:{self.score}", 0, self.color)
+        """
+        スコアをスクリーン上に表示させる
+        """
+        self.img = self.fonto.render(f"スコア:{self.score}", 0, self.color)  # 文字列Surfaceの生成
         screen.blit(self.img, self.rct)
 
 
@@ -164,7 +170,8 @@ def main():
     bg_img = pg.image.load("fig/pg_bg.jpg")
     bird = Bird((300, 200))
     score = Score()
-    beam = None
+    beams = []
+    # beam = None
     bombs = [Bomb((255, 0, 0), 10) for _ in range(NUM_OF_BOMBS)]
     clock = pg.time.Clock()
     tmr = 0
